@@ -40,6 +40,7 @@ public class StatementGeneratorService {
 	@Autowired
 	private AWSService awsService;
 
+	
 	private static final String STATEMENTS_DIR = "D:\\Spring Boot Practice\\Bank Statement Aggregation\\StatementsFiles";
 	
 
