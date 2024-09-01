@@ -35,7 +35,7 @@ public class BankStatements {
 	private LocalDate statementDate;
 	
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String statementCode;
 	
 	@NotBlank

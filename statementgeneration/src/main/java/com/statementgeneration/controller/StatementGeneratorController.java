@@ -1,6 +1,7 @@
 package com.statementgeneration.controller;
 
 import java.io.IOException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,8 @@ import com.statementgeneration.DTO.BankStatementDTO;
 import com.statementgeneration.entity.BankStatements;
 import com.statementgeneration.service.StatementGeneratorService;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class StatementGeneratorController {
 	
@@ -19,7 +22,7 @@ public class StatementGeneratorController {
 	private StatementGeneratorService generatorService;
 	
 	@PostMapping("/generate")
-	public ResponseEntity<BankStatements> BankStatementsGenerator(@RequestBody BankStatementDTO bankStatementDTO) throws IOException{
+	public ResponseEntity<?> BankStatementsGenerator(@Valid @RequestBody BankStatementDTO bankStatementDTO) throws IOException{
 		System.out.println(bankStatementDTO);
 		return generatorService.statementGenerate(bankStatementDTO);
 		

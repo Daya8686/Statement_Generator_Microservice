@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -89,6 +90,25 @@ public class GlobalExceptionsHandler extends ResponseEntityExceptionHandler {
 		errorResponse.setTimestamp(LocalDateTime.now());
 		// You can add more specific handling based on the exception message or type
 
+		return errorResponse;
+	}
+	
+	@ExceptionHandler(FileNotFoundInS3.class)
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	@ResponseBody
+	public ErrorResponse fileNotFoundInCloudException(FileNotFoundInS3 fileNotFoundInS3) {
+		errorResponse.setMessage(fileNotFoundInS3.getMessage());
+		errorResponse.setStatus(fileNotFoundInS3.getHttpStatus().value());
+		errorResponse.setTimestamp(LocalDateTime.now());
+		return errorResponse;
+	}
+	@ExceptionHandler(DuplicateStatementCodeException.class)
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	@ResponseBody
+	public ErrorResponse DuplicateStatementCodeException(DuplicateStatementCodeException duplicateStatementCodeException) {
+		errorResponse.setMessage(duplicateStatementCodeException.getMessage());
+		errorResponse.setStatus(duplicateStatementCodeException.getHttpStatus().value());
+		errorResponse.setTimestamp(LocalDateTime.now());
 		return errorResponse;
 	}
 

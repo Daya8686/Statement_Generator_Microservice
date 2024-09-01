@@ -35,7 +35,7 @@ public class DummyStatementGeneration {
 			transaction.setAmount(amount);
 			transaction.setCompanyName(bankStatementDTO.getCompanyName());
 			transaction.setCompanyCode(bankStatementDTO.getCompanyCode());
-			transaction.setTransactionState(Math.random() < 0.7 ? "DR" : "CR");
+			transaction.setTransactionState(Math.random() < 0.7 ? "CR" : "DR");
 			transaction.setBankCode(bankStatementDTO.getBankCode());
 			transaction.setBranchId(bankStatementDTO.getBranchId());
 			transaction.setDescription(bankStatementDTO.getCompanyName() + "_" + bankStatementDTO.getCompanyCode() + "_"

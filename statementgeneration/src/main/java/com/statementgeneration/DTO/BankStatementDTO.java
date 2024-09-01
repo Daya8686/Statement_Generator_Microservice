@@ -7,28 +7,29 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class BankStatementDTO {
 	
-	@NotBlank
+	@NotNull
 	@Min(value = 1000, message = "Company Code must be at least 4 digits")
 	@Max(value = 999999, message = "Company Code must be at most 6 digits")
 	private int companyCode;
 	
-	@NotBlank
+	@NotNull
 	@Min(value = 1000, message = "Bank Code must be at least 4 digits")
     @Max(value = 999999, message = "Bank Code must be at most 6 digits")
 	private int BankCode;
 	
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	@Column(name="branch_id")
     private Long branchId;
 	
-	@NotBlank
+	@NotNull
 	private int numberOfTransactionsGenerate;
 	
-	@NotBlank
+	@NotNull
+    @Column(nullable = false)
 	private boolean deleteAfterUpload;
 	
 	@NotBlank
@@ -89,7 +90,7 @@ public class BankStatementDTO {
 	@Override
 	public String toString() {
 		return "BankStatementDTO [companyCode=" + companyCode + ", BankCode=" + BankCode + ", branchId=" + branchId
-				+ ", noumberOfTransactionToGenerate=" + numberOfTransactionsGenerate + ", deleteAfterUpload="
+				+ ", numberOfTransactionToGenerate=" + numberOfTransactionsGenerate + ", deleteAfterUpload="
 				+ deleteAfterUpload + ", companyName=" + companyName + "]";
 	}
 
